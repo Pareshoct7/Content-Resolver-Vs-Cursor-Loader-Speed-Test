@@ -90,7 +90,7 @@ public class ContactListFragment extends Fragment {
                 @Override
                 public void getMobileContacts(ArrayList<Contact> contacts) {
                     endTime = System.nanoTime();
-                    tvTimer.setText("Execution time : " + ((endTime - startTime) / 1000000));
+                    tvTimer.setText("Execution time : " + ((endTime - startTime) / 1000000) + "ms");
 
                     contactsList = contacts;
 
