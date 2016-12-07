@@ -1,14 +1,12 @@
 # Contacts Import Library 
 
-This is a sample application to demonstrates the "ContactsImportLib", a well structured, fast and easy to use, easy to modify library for getting contacts from the mobile using the "ContentResolver". I made this library to use it in my application:
+While developing my app (https://play.google.com/store/apps/details?id=jagerfield.dcm) I used both the ContentResolver and the CursorLoader to fetch contacts from the mobile. The ContentResolver is a class that provides applications access to the content model. The CursorLoader is a loader object that queries a ContentResolver for data. In my trials I noticed that the ContentResolver is much faster. This application compares the execution time of both methods in fetching contacts. 
 
-https://play.google.com/store/apps/details?id=jagerfield.dcm
+Images of the results from the app:
 
-Images from the sample app:
+<img src="https://github.com/Jagerfield/Content-Resolver-Vs-Cursor-Loader-Speed-Test/blob/master/msc/Content%20Resolver.png" width="240">
 
-<img src="https://github.com/Jagerfield/Android-get-phone-book-contact-library/blob/master/Snapshots/Screenshot_ContactList.png" width="240">
-
-<img src="https://github.com/Jagerfield/Android-get-phone-book-contact-library/blob/master/Snapshots/Screenshot_ContactDetails.png" width="240">
+<img src="https://github.com/Jagerfield/Content-Resolver-Vs-Cursor-Loader-Speed-Test/blob/master/msc/Cursor%20Loader.png" width="240">
 
 ## Installation
 
