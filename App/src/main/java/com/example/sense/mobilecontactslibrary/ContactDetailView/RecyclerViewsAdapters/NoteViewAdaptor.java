@@ -1,4 +1,4 @@
-package com.example.sense.mobilecontactslibrary.ContactView.FieldAdapters;
+package com.example.sense.mobilecontactslibrary.ContactDetailView.RecyclerViewsAdapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,48 +6,43 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.example.contactsimportlibrary.ElementContainers.NumberContainer;
-import com.example.contactsimportlibrary.Contact.Contact;
+import com.example.contactsimportlibrary.ElementContainers.NoteContainer;
 import com.example.sense.mobilecontactslibrary.R;
-
 import java.util.LinkedList;
 
-public class NumberViewAdapter extends RecyclerView.Adapter<NumberViewAdapter.ViewHolder> {
+
+public class NoteViewAdaptor extends RecyclerView.Adapter<NoteViewAdaptor.ViewHolder> {
 
     private Context context;
-    private final LinkedList<NumberContainer> numbersList;
+    private final LinkedList<NoteContainer> noteList;
 
-    public NumberViewAdapter(Context context, LinkedList<NumberContainer> numbersList) {
+    public NoteViewAdaptor(Context context, LinkedList<NoteContainer> noteList) {
         this.context = context;
-        this.numbersList = numbersList;
+        this.noteList = noteList;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.field_list_item_double_prop, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.field_list_item_single_prop, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position)
     {
-        String number = numbersList.get(position).elementValue();
-        String type = numbersList.get(position).getNumType();
-
-        holder.tvValue.setText(number);
-        holder.tvType.setText(type);
+        String value = noteList.get(position).getNote();
+        holder.tvValue.setText(value);
     }
 
     @Override
     public int getItemCount() {
-        return numbersList.size();
+        return noteList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView tvValue;
         public final TextView tvType;
-        public Contact vhContact;
 
         public ViewHolder(View view) {
             super(view);

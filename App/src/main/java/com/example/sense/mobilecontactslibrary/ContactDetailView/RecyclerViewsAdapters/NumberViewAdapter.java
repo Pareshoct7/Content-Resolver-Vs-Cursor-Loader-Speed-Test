@@ -1,4 +1,4 @@
-package com.example.sense.mobilecontactslibrary.ContactView.FieldAdapters;
+package com.example.sense.mobilecontactslibrary.ContactDetailView.RecyclerViewsAdapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,20 +6,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import com.example.contactsimportlibrary.ElementContainers.EventContainer;
+import com.example.contactsimportlibrary.ElementContainers.NumberContainer;
+import com.example.contactsimportlibrary.Contact.Contact;
 import com.example.sense.mobilecontactslibrary.R;
 import java.util.LinkedList;
 
-
-public class EventViewAdaptor extends RecyclerView.Adapter<EventViewAdaptor.ViewHolder> {
+public class NumberViewAdapter extends RecyclerView.Adapter<NumberViewAdapter.ViewHolder> {
 
     private Context context;
-    private final LinkedList<EventContainer> eventList;
+    private final LinkedList<NumberContainer> numbersList;
 
-    public EventViewAdaptor(Context context, LinkedList<EventContainer> eventList) {
+    public NumberViewAdapter(Context context, LinkedList<NumberContainer> numbersList) {
         this.context = context;
-        this.eventList = eventList;
+        this.numbersList = numbersList;
     }
 
     @Override
@@ -32,21 +31,22 @@ public class EventViewAdaptor extends RecyclerView.Adapter<EventViewAdaptor.View
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position)
     {
-        String value = eventList.get(position).getEventStartDate();
-        String type = eventList.get(position).getEventType();
+        String number = numbersList.get(position).elementValue();
+        String type = numbersList.get(position).getNumType();
 
-        holder.tvValue.setText(value);
+        holder.tvValue.setText(number);
         holder.tvType.setText(type);
     }
 
     @Override
     public int getItemCount() {
-        return eventList.size();
+        return numbersList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView tvValue;
         public final TextView tvType;
+        public Contact vhContact;
 
         public ViewHolder(View view) {
             super(view);

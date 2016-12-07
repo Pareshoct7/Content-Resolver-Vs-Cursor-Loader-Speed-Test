@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.sense.mobilecontactslibrary.ContactView.ContactDetailActivity">
+    tools:context="com.example.sense.mobilecontactslibrary.ContactDetailView.ContactDetailActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"

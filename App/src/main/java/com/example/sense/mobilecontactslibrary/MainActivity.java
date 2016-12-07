@@ -10,37 +10,26 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-
 import com.example.sense.mobilecontactslibrary.ContactList.ListFragment.ContactListFragment;
 import com.example.sense.mobilecontactslibrary.Utilities.C;
-
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity
-{
+public class MainActivity extends AppCompatActivity {
     private static final int READ_CONTACT_PERMISSION_REQUEST_CODE = 76;
     private ViewPager viewPager;
     private TabLayout tabLayout;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-//        final ActionBar ab = getSupportActionBar();
-//        ab.setHomeAsUpIndicator(R.drawable.ic_menu);
-//        ab.setDisplayHomeAsUpEnabled(true);
-
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
-
         checkPermission();
     }
 
@@ -49,8 +38,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private void launchViewPager()
-    {
+    private void launchViewPager() {
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         viewPagerAdapter.addTab(C.CURSOR_CONTENT_RESOLVER, ContactListFragment.newInstance(C.CURSOR_CONTENT_RESOLVER));
@@ -75,7 +63,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-
     public class ViewPagerAdapter extends FragmentPagerAdapter {
 
         private final ArrayList<FragModel> fragmentList = new ArrayList<>();
@@ -85,14 +72,13 @@ public class MainActivity extends AppCompatActivity
         }
 
         @Override
-        public Fragment getItem(int position)
-        {
+        public Fragment getItem(int position) {
             return fragmentList.get(position).fragment;
         }
 
         @Override
         public int getCount() {
-           return fragmentList.size();
+            return fragmentList.size();
         }
 
         @Override
@@ -100,12 +86,11 @@ public class MainActivity extends AppCompatActivity
             return fragmentList.get(position).title;
         }
 
-        public void addTab(String title, Fragment fragment){
-            fragmentList.add(new FragModel(title,fragment));
+        public void addTab(String title, Fragment fragment) {
+            fragmentList.add(new FragModel(title, fragment));
         }
 
-        class FragModel
-        {
+        class FragModel {
             Fragment fragment;
             String title;
 
@@ -115,6 +100,4 @@ public class MainActivity extends AppCompatActivity
             }
         }
     }
-
-
 }

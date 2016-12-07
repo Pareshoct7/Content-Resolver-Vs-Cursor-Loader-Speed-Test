@@ -1,4 +1,4 @@
-package com.example.sense.mobilecontactslibrary.ContactView;
+package com.example.sense.mobilecontactslibrary.ContactDetailView;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -15,23 +15,26 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
+import com.example.contactsimportlibrary.Contact.Contact;
 import com.example.contactsimportlibrary.ElementContainers.AddressContainer;
 import com.example.contactsimportlibrary.ElementContainers.EmailContainer;
 import com.example.contactsimportlibrary.ElementContainers.EventContainer;
 import com.example.contactsimportlibrary.ElementContainers.NoteContainer;
 import com.example.contactsimportlibrary.ElementContainers.NumberContainer;
 import com.example.contactsimportlibrary.ElementContainers.WebsiteContainer;
-import com.example.contactsimportlibrary.Contact.Contact;
-import com.example.sense.mobilecontactslibrary.ContactView.FieldAdapters.AddressViewAdapter;
-import com.example.sense.mobilecontactslibrary.ContactView.FieldAdapters.EmailViewAdapter;
-import com.example.sense.mobilecontactslibrary.ContactView.FieldAdapters.EventViewAdaptor;
-import com.example.sense.mobilecontactslibrary.ContactView.FieldAdapters.NoteViewAdaptor;
-import com.example.sense.mobilecontactslibrary.ContactView.FieldAdapters.NumberViewAdapter;
-import com.example.sense.mobilecontactslibrary.ContactView.FieldAdapters.WebsiteViewAdaptor;
+import com.example.sense.mobilecontactslibrary.ContactDetailView.RecyclerViewsAdapters.AddressViewAdapter;
+import com.example.sense.mobilecontactslibrary.ContactDetailView.RecyclerViewsAdapters.EmailViewAdapter;
+import com.example.sense.mobilecontactslibrary.ContactDetailView.RecyclerViewsAdapters.EventViewAdaptor;
+import com.example.sense.mobilecontactslibrary.ContactDetailView.RecyclerViewsAdapters.NoteViewAdaptor;
+import com.example.sense.mobilecontactslibrary.ContactDetailView.RecyclerViewsAdapters.NumberViewAdapter;
+import com.example.sense.mobilecontactslibrary.ContactDetailView.RecyclerViewsAdapters.WebsiteViewAdaptor;
 import com.example.sense.mobilecontactslibrary.R;
 import com.example.sense.mobilecontactslibrary.Utilities.C;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import java.util.LinkedList;
 
 public class ContactDetailActivity extends AppCompatActivity {
@@ -55,11 +58,20 @@ public class ContactDetailActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
 
-        Contact contact = getArguments();
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onGreenRobotEvent(Contact contact) {
+        /*
+         * Posted from : holder.mView.setOnClickListener - ContactListViewAdapter
+         */
+        EventBus.getDefault().removeStickyEvent(Contact.class);
+
+        if (contact == null) {
+            return;
+        }
 
         loadContactImage(contact.getPhotoUri());
-
         loadNamesField(contact);
         loadNumbersField(contact);
         loadAddressField(contact);
@@ -69,8 +81,19 @@ public class ContactDetailActivity extends AppCompatActivity {
         loadNoteField(contact);
     }
 
-    private void loadContactImage(String imageDir)
-    {
+    @Override
+    public void onResume() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    private void loadContactImage(String imageDir) {
         final ImageView imageView = (ImageView) findViewById(R.id.contactImage);
 
         bindfieldIcons();
@@ -93,8 +116,7 @@ public class ContactDetailActivity extends AppCompatActivity {
 
                         Palette.Swatch color = C.getImageColor(C.VIBRANT, resource);
 
-                        if (color!=null)
-                        {
+                        if (color != null) {
                             /**
                              * Recolor the icons
                              */
@@ -105,8 +127,7 @@ public class ContactDetailActivity extends AppCompatActivity {
 
     }
 
-    private void recolorFieldIcons(Palette.Swatch color)
-    {
+    private void recolorFieldIcons(Palette.Swatch color) {
         ivName.setColorFilter(color.getRgb());
         ivNumber.setColorFilter(color.getRgb());
         ivAddress.setColorFilter(color.getRgb());
@@ -139,8 +160,7 @@ public class ContactDetailActivity extends AppCompatActivity {
         return contact;
     }
 
-    private void loadNamesField(Contact contact)
-    {
+    private void loadNamesField(Contact contact) {
         if (contact == null) {
             return;
         }
@@ -158,8 +178,12 @@ public class ContactDetailActivity extends AppCompatActivity {
 
         StringBuilder title = new StringBuilder();
 
-        if(fName) {title.append(contact.getFirstName() + " ");}
-        if(lName) {title.append(contact.getLastName());}
+        if (fName) {
+            title.append(contact.getFirstName() + " ");
+        }
+        if (lName) {
+            title.append(contact.getLastName());
+        }
 
         /**
          * Set activity's title to show contact first and last names
@@ -172,15 +196,11 @@ public class ContactDetailActivity extends AppCompatActivity {
 
     }
 
-    private boolean setViewState(TextView tv, String value)
-    {
-        if (value.trim().isEmpty())
-        {
+    private boolean setViewState(TextView tv, String value) {
+        if (value.trim().isEmpty()) {
             tv.setVisibility(View.GONE);
             return false;
-        }
-        else
-        {
+        } else {
             tv.setVisibility(View.VISIBLE);
             return true;
         }

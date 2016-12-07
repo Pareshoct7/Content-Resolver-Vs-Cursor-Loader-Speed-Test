@@ -11,18 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.example.contactsimportlibrary.Contact.Contact;
 import com.example.contactsimportlibrary.ImportContacts;
-import com.example.sense.mobilecontactslibrary.ContactView.ContactDetailActivity;
+import com.example.sense.mobilecontactslibrary.ContactDetailView.ContactDetailActivity;
 import com.example.sense.mobilecontactslibrary.R;
 import com.example.sense.mobilecontactslibrary.Utilities.C;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
+import org.greenrobot.eventbus.EventBus;
 import java.util.ArrayList;
-
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 public class ContactListFragment extends Fragment {
@@ -56,6 +52,13 @@ public class ContactListFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         contactListFragment = this;
 
+//        EventBus.getDefault().register(this);
+//        contactsList = EventBus.getDefault().removeStickyEvent((new ArrayList<Contact>()).getClass());
+
+        if (contactsList == null) {
+            contactsList = new ArrayList<>();
+        }
+
         startTime = 0l;
         endTime = 0l;
 
@@ -69,7 +72,7 @@ public class ContactListFragment extends Fragment {
                 @Override
                 public void getMobileContacts(ArrayList<Contact> contacts) {
                     endTime = System.nanoTime();
-                    tvTimer.setText("Execution time : " + ((endTime - startTime)/1000000) + "ms");
+                    tvTimer.setText("Execution time : " + ((endTime - startTime) / 1000000) + "ms");
 
 
                     contactsList = contacts;
@@ -87,7 +90,7 @@ public class ContactListFragment extends Fragment {
                 @Override
                 public void getMobileContacts(ArrayList<Contact> contacts) {
                     endTime = System.nanoTime();
-                    tvTimer.setText("Execution time : " + ((endTime - startTime)/1000000));
+                    tvTimer.setText("Execution time : " + ((endTime - startTime) / 1000000));
 
                     contactsList = contacts;
 
@@ -100,7 +103,6 @@ public class ContactListFragment extends Fragment {
 
         return view;
     }
-
 
     /**
      * Returns a new instance of this fragment
@@ -155,16 +157,7 @@ public class ContactListFragment extends Fragment {
                     }
 
                     Intent i = new Intent(context, ContactDetailActivity.class);
-
-                    GsonBuilder builder = new GsonBuilder();
-                    builder.excludeFieldsWithoutExposeAnnotation();
-                    Gson gsonBuilder = builder.create();
-
-//                    String jsonContact = gsonBuilder.toJson(contactList);
-//                    i.putExtra(C.CONTACTLIST, jsonContact);
-//                    i.putExtra(C.POSITION, position);
-                    String jsonContact = gsonBuilder.toJson(contactList.get(position));
-                    i.putExtra(C.CONTACT, jsonContact);
+                    EventBus.getDefault().postSticky(contactList.get(position));
                     context.startActivity(i);
                 }
             });
@@ -187,9 +180,6 @@ public class ContactListFragment extends Fragment {
                 name = (TextView) view.findViewById(R.id.tv_name);
                 image = (ImageView) view.findViewById(R.id.iv_contact_Image);
             }
-
         }
     }
-
-
 }

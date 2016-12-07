@@ -1,4 +1,4 @@
-package com.example.sense.mobilecontactslibrary.ContactView.FieldAdapters;
+package com.example.sense.mobilecontactslibrary.ContactDetailView.RecyclerViewsAdapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,20 +6,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.example.contactsimportlibrary.ElementContainers.NoteContainer;
+import com.example.contactsimportlibrary.ElementContainers.WebsiteContainer;
 import com.example.sense.mobilecontactslibrary.R;
-
 import java.util.LinkedList;
 
 
-public class NoteViewAdaptor extends RecyclerView.Adapter<NoteViewAdaptor.ViewHolder> {
+public class WebsiteViewAdaptor extends RecyclerView.Adapter<WebsiteViewAdaptor.ViewHolder> {
 
     private Context context;
-    private final LinkedList<NoteContainer> noteList;
+    private final LinkedList<WebsiteContainer> websiteList;
 
-    public NoteViewAdaptor(Context context, LinkedList<NoteContainer> noteList) {
+    public WebsiteViewAdaptor(Context context, LinkedList<WebsiteContainer> websiteList) {
         this.context = context;
-        this.noteList = noteList;
+        this.websiteList = websiteList;
     }
 
     @Override
@@ -32,13 +31,13 @@ public class NoteViewAdaptor extends RecyclerView.Adapter<NoteViewAdaptor.ViewHo
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position)
     {
-        String value = noteList.get(position).getNote();
+        String value = websiteList.get(position).getWebsite();
         holder.tvValue.setText(value);
     }
 
     @Override
     public int getItemCount() {
-        return noteList.size();
+        return websiteList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

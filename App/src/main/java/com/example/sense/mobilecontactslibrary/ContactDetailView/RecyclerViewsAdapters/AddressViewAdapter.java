@@ -1,4 +1,4 @@
-package com.example.sense.mobilecontactslibrary.ContactView.FieldAdapters;
+package com.example.sense.mobilecontactslibrary.ContactDetailView.RecyclerViewsAdapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,19 +6,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.example.contactsimportlibrary.ElementContainers.EmailContainer;
+import com.example.contactsimportlibrary.ElementContainers.AddressContainer;
 import com.example.sense.mobilecontactslibrary.R;
 import java.util.LinkedList;
 
 
-public class EmailViewAdapter extends RecyclerView.Adapter<EmailViewAdapter.ViewHolder> {
+public class AddressViewAdapter extends RecyclerView.Adapter<AddressViewAdapter.ViewHolder> {
 
     private Context context;
-    private final LinkedList<EmailContainer> emailList;
+    private final LinkedList<AddressContainer> addressList;
 
-    public EmailViewAdapter(Context context, LinkedList<EmailContainer> emailList) {
+    public AddressViewAdapter(Context context, LinkedList<AddressContainer> addressList) {
         this.context = context;
-        this.emailList = emailList;
+        this.addressList = addressList;
     }
 
     @Override
@@ -31,16 +31,16 @@ public class EmailViewAdapter extends RecyclerView.Adapter<EmailViewAdapter.View
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position)
     {
-        String value = emailList.get(position).getEmail();
-        String type = emailList.get(position).getEmailType();
+        String number = addressList.get(position).getAddress();
+        String type = addressList.get(position).getAddressType();
 
-        holder.tvValue.setText(value);
+        holder.tvValue.setText(number);
         holder.tvType.setText(type);
     }
 
     @Override
     public int getItemCount() {
-        return emailList.size();
+        return addressList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
