@@ -20,18 +20,12 @@ In the app build.gradle add the following:
   a. Add JitPack repository at the end of repositories 
 
   ```java
-  repositories {
-      maven { url 'https://jitpack.io' }
-  }
-
+ 
   ```
   b. Add the dependency
  
   ```java
-  dependencies {
-	        compile 'com.github.Jagerfield:Android-get-phone-book-contact-library:v2.0'
-	}
-  
+   
   ```
 
 ## How to use?
