@@ -34,14 +34,11 @@ In the app build.gradle add the following:
   ```
 
 ## How to use?
+You can use this library to fetch contacts using either one of the methods or both:
 
-1. After instaling the library, declare and instantiate an object of type "ImportContacts" class with "context" as an argument.
-2. Call the getContacts() method to get all the contacts.
+# Fetch contacts using ContentResolver
 
 ```java
-/**
- * Fetch contacts using ContentResolver
- */
   new ImportContacts(getActivity(), new ImportContacts.ContentResolverCallback() 
   {
       @Override
@@ -53,10 +50,12 @@ In the app build.gradle add the following:
              }
         }
   });
+  
+```
 
-/**
- * Fetch contacts using CursorLoader
- */
+# Fetch contacts using CursorLoader
+
+```java
   new ImportContacts(getActivity(), new ImportContacts.CursorLoaderCallback() 
   {
       @Override
