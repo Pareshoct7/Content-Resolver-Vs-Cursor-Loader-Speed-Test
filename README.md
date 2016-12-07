@@ -44,17 +44,15 @@ In the app build.gradle add the following:
  */
   new ImportContacts(getActivity(), new ImportContacts.ContentResolverCallback() 
   {
-                @Override
-                public void getMobileContacts(ArrayList<Contact> contacts) 
-		{
-                    contactsList = contacts;
-
-                    if (contactsList != null) {
-                        recyclerView.setAdapter(new ContactListViewAdapter(contactListFragment, contactsList));
-                    }
-
-                }
-            });
+      @Override
+      public void getMobileContacts(ArrayList<Contact> contacts)
+	    {
+            if (contacts != null)
+            {
+              recyclerView.setAdapter(new ContactListViewAdapter(contactListFragment, contactsList));
+            }
+        }
+  });
 
 /**
  * Fetch mobile contacts list
