@@ -49,7 +49,7 @@ In the app build.gradle add the following:
        {
            if (contacts != null)
              {
-                recyclerView.setAdapter(new ContactListViewAdapter(contactListFragment, contactsList));
+                recyclerView.setAdapter(new ContactListViewAdapter(contactListFragment, contacts));
              }
         }
   });
@@ -61,12 +61,13 @@ In the app build.gradle add the following:
   {
       @Override
       public void getMobileContacts(ArrayList<Contact> contacts) 
-      {
-         if (contactsList != null) 
-	   {
-              recyclerView.setAdapter(new ContactListViewAdapter(contactListFragment, contactsList));
-           }
-      }
+       {
+           if (contacts != null)
+             {
+                recyclerView.setAdapter(new ContactListViewAdapter(contactListFragment, contacts));
+             }
+        }
   });
+
   
 ```
