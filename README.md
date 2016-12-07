@@ -36,7 +36,7 @@ In the app build.gradle add the following:
 ## How to use?
 You can use this library to fetch contacts using either one of the methods or both:
 
-# Fetch contacts using ContentResolver
+### Fetch contacts using ContentResolver
 
 ```java
   new ImportContacts(getActivity(), new ImportContacts.ContentResolverCallback() 
@@ -53,7 +53,7 @@ You can use this library to fetch contacts using either one of the methods or bo
   
 ```
 
-# Fetch contacts using CursorLoader
+### Fetch contacts using CursorLoader
 
 ```java
   new ImportContacts(getActivity(), new ImportContacts.CursorLoaderCallback() 
