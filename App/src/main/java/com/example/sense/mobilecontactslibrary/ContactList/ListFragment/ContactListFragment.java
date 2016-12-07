@@ -69,11 +69,11 @@ public class ContactListFragment extends Fragment {
             startTime = System.nanoTime();
 
             new ImportContacts(getActivity(), new ImportContacts.ContentResolverCallback() {
+
                 @Override
                 public void getMobileContacts(ArrayList<Contact> contacts) {
                     endTime = System.nanoTime();
                     tvTimer.setText("Execution time : " + ((endTime - startTime) / 1000000) + "ms");
-
 
                     contactsList = contacts;
 
@@ -86,7 +86,8 @@ public class ContactListFragment extends Fragment {
         } else if (cursorType.equals(C.CURSOR_LOADER)) {
             startTime = System.nanoTime();
 
-            new ImportContacts(getActivity(), new ImportContacts.CursorLoaderCallback() {
+            new ImportContacts(getActivity(), new ImportContacts.CursorLoaderCallback()
+            {
                 @Override
                 public void getMobileContacts(ArrayList<Contact> contacts) {
                     endTime = System.nanoTime();
