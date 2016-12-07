@@ -6,7 +6,7 @@ This application compares the execution time of both methods in fetching contact
 
 https://github.com/Jagerfield/Android-get-phone-book-contact-library
 
-Images of the comparison results:
+The following images are results of a test performed on the simulator. However, Real life tests on my Samsung tablet S2 showed that the ContentResolver was almost twice faster than the CursorLoader.
 
 <img src="https://github.com/Jagerfield/Content-Resolver-Vs-Cursor-Loader-Speed-Test/blob/master/msc/Content%20Resolver.png" width="240">
 
