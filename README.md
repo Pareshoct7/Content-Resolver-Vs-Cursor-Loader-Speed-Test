@@ -70,9 +70,3 @@ In the app build.gradle add the following:
   });
   
 ```
-
-## UML Diagram
-
-This is a general diagram of the software architectural design, and it only includes the numbers elements for clarity. 
-
-<img src="https://github.com/Jagerfield/Android-get-phone-book-contact-library/blob/master/ContactLib_UML.PNG" width="520">
