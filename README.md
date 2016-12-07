@@ -20,12 +20,20 @@ In the app build.gradle add the following:
   a. Add JitPack repository at the end of repositories 
 
   ```java
+  repositories 
+  {
+     maven { url 'https://jitpack.io' }
+  }
  
   ```
   b. Add the dependency
  
   ```java
-   
+  dependencies 
+  {
+	   compile 'com.github.Jagerfield:Content-Resolver-Vs-Cursor-Loader-Speed-Test:v1.0'
+  }
+  
   ```
 
 ## How to use?
@@ -41,7 +49,7 @@ You can use this library to fetch contacts using either one of the methods or bo
        {
            if (contacts != null)
              {
-                recyclerView.setAdapter(new ContactListViewAdapter(contactListFragment, contacts));
+                //Write your code here
              }
         }
   });
@@ -58,10 +66,9 @@ You can use this library to fetch contacts using either one of the methods or bo
        {
            if (contacts != null)
              {
-                recyclerView.setAdapter(new ContactListViewAdapter(contactListFragment, contacts));
+                //Write your code here
              }
         }
   });
 
-  
 ```
