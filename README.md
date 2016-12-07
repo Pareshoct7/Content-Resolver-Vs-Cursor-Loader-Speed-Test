@@ -40,7 +40,7 @@ In the app build.gradle add the following:
 
 ```java
 /**
- * Declare and instantiate an object of the "ImportContacts" class
+ * Fetch contacts using ContentResolver
  */
   new ImportContacts(getActivity(), new ImportContacts.ContentResolverCallback() 
   {
@@ -49,15 +49,26 @@ In the app build.gradle add the following:
 	    {
             if (contacts != null)
             {
-              recyclerView.setAdapter(new ContactListViewAdapter(contactListFragment, contactsList));
+               recyclerView.setAdapter(new ContactListViewAdapter(contactListFragment, contactsList));
             }
         }
   });
 
 /**
- * Fetch mobile contacts list
+ * Fetch contacts using CursorLoader
  */
-   ArrayList<Contact> listItem = importContacts.getContacts();
+  new ImportContacts(getActivity(), new ImportContacts.CursorLoaderCallback() 
+  {
+      @Override
+      public void getMobileContacts(ArrayList<Contact> contacts) 
+      {
+         if (contactsList != null) 
+	 {
+            recyclerView.setAdapter(new ContactListViewAdapter(contactListFragment, contactsList));
+         }
+      }
+  });
+  
 ```
 
 ## UML Diagram
