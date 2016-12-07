@@ -14,8 +14,8 @@ public class C
     public static final int MUTED= 5;
     public static final int DARK_MUTED= 6;
     public static final String CURSOR_TYPE = "CURSOR_TYPE";
-    public static final String CURSOR_CONTENT_RESOLVER = "CURSOR_CONTENT_RESOLVER";
-    public static final String CURSOR_LOADER = "CURSOR_LOADER";
+    public static final String CURSOR_CONTENT_RESOLVER = "Cursor Content Resolver";
+    public static final String CURSOR_LOADER = "Cursor Loader";
 
 
     // Return a palette's vibrant swatch after checking that it exists

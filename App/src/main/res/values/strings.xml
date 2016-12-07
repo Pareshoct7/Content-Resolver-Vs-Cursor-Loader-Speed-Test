@@ -1,5 +1,5 @@
 <resources>
-    <string name="AppName">Contact List</string>
+    <string name="AppName">Resolver And Loader Comparison</string>
     <string name="title_activity_display_contact">Contact Details</string>
     <string name="action_settings">Settings</string>
 </resources>
