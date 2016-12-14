@@ -1,4 +1,4 @@
-## Application Purpose and Description
+## ContentResolver Vs CursorLoader- Speed Test
 
 While developing my app [DCM](https://play.google.com/store/apps/details?id=jagerfield.dcm) I used both the ContentResolver and the CursorLoader to fetch contacts from the mobile. The ContentResolver is a class that provides applications access to the content model. The CursorLoader is a loader object that queries a ContentResolver for data. In my trials I noticed that the ContentResolver is much faster. 
 
